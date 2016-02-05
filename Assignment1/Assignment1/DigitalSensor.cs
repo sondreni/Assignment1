@@ -6,30 +6,18 @@ using System.Threading.Tasks;
 
 namespace Assignment1
 {
-    class AnalogSensor
+    class DigitalSensor
     {
-        private double _Value;
+        private int _Value; //Using 1 and 0 as true false instead of boolean
         private string _TagID;
-        private string _EngUnit;
-        public AnalogSensor(string TagID, double Value, string EngUnit )
+        public DigitalSensor(string TagID, int Value)
         {
             _TagID = TagID;
             _Value = Value;
-            _EngUnit = EngUnit;
         }
-        public AnalogSensor(string TagID, string EngUnit)
+        public DigitalSensor(string TagID)
         {
             _TagID = TagID;
-            _EngUnit = EngUnit;
-        }
-
-        public AnalogSensor(string TagID)
-        {
-            _TagID = TagID;
-        }
-        public AnalogSensor()
-        {
-
         }
 
         public String TagID
@@ -43,7 +31,7 @@ namespace Assignment1
                 _TagID = value;
             }
         }
-        public double Value
+        public int Value
         {
             get
             {
@@ -54,17 +42,5 @@ namespace Assignment1
                 _Value = value;
             }
         }
-        public string EngUnit
-        {
-            get
-            {
-                return _EngUnit;
-            }
-            set
-            {
-                _EngUnit = value;
-            }
-        }
-
     }
 }

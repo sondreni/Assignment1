@@ -44,7 +44,7 @@
             // 
             this.btnSampling.Location = new System.Drawing.Point(8, 47);
             this.btnSampling.Name = "btnSampling";
-            this.btnSampling.Size = new System.Drawing.Size(108, 23);
+            this.btnSampling.Size = new System.Drawing.Size(95, 23);
             this.btnSampling.TabIndex = 0;
             this.btnSampling.Text = "Toggle Sampling";
             this.btnSampling.UseVisualStyleBackColor = true;
@@ -52,43 +52,47 @@
             // 
             // btnLogging
             // 
+            this.btnLogging.Enabled = false;
             this.btnLogging.Location = new System.Drawing.Point(8, 121);
             this.btnLogging.Name = "btnLogging";
-            this.btnLogging.Size = new System.Drawing.Size(108, 23);
+            this.btnLogging.Size = new System.Drawing.Size(95, 23);
             this.btnLogging.TabIndex = 1;
             this.btnLogging.Text = "Toggle Logging";
             this.btnLogging.UseVisualStyleBackColor = true;
-            this.btnLogging.Click += new System.EventHandler(this.btnLogging_Click);
+            this.btnLogging.Click += new System.EventHandler(this.btnLogging_Click_1);
             // 
             // txtNextSamplingTime
             // 
             this.txtNextSamplingTime.Enabled = false;
-            this.txtNextSamplingTime.Location = new System.Drawing.Point(122, 50);
+            this.txtNextSamplingTime.Location = new System.Drawing.Point(109, 50);
             this.txtNextSamplingTime.Name = "txtNextSamplingTime";
+            this.txtNextSamplingTime.ReadOnly = true;
             this.txtNextSamplingTime.Size = new System.Drawing.Size(100, 20);
             this.txtNextSamplingTime.TabIndex = 2;
             // 
             // txtNextLoggingTime
             // 
             this.txtNextLoggingTime.Enabled = false;
-            this.txtNextLoggingTime.Location = new System.Drawing.Point(122, 123);
+            this.txtNextLoggingTime.Location = new System.Drawing.Point(109, 123);
             this.txtNextLoggingTime.Name = "txtNextLoggingTime";
+            this.txtNextLoggingTime.ReadOnly = true;
             this.txtNextLoggingTime.Size = new System.Drawing.Size(100, 20);
             this.txtNextLoggingTime.TabIndex = 3;
             // 
             // txtSensorData
             // 
             this.txtSensorData.Enabled = false;
-            this.txtSensorData.Location = new System.Drawing.Point(262, 50);
+            this.txtSensorData.Location = new System.Drawing.Point(220, 47);
             this.txtSensorData.Multiline = true;
             this.txtSensorData.Name = "txtSensorData";
-            this.txtSensorData.Size = new System.Drawing.Size(119, 132);
+            this.txtSensorData.ReadOnly = true;
+            this.txtSensorData.Size = new System.Drawing.Size(222, 97);
             this.txtSensorData.TabIndex = 4;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(119, 34);
+            this.label1.Location = new System.Drawing.Point(106, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(101, 13);
             this.label1.TabIndex = 5;
@@ -97,7 +101,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(119, 107);
+            this.label2.Location = new System.Drawing.Point(106, 107);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 6;
@@ -106,17 +110,21 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(259, 34);
+            this.label3.Location = new System.Drawing.Point(217, 31);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 13);
             this.label3.TabIndex = 7;
             this.label3.Text = "Sensor Values";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(425, 245);
+            this.ClientSize = new System.Drawing.Size(452, 153);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
