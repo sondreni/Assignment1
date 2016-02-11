@@ -38,6 +38,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblNumberOfWrites = new System.Windows.Forms.Label();
+            this.lblFileName = new System.Windows.Forms.Label();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSampling
@@ -53,7 +59,7 @@
             // btnLogging
             // 
             this.btnLogging.Enabled = false;
-            this.btnLogging.Location = new System.Drawing.Point(8, 121);
+            this.btnLogging.Location = new System.Drawing.Point(8, 101);
             this.btnLogging.Name = "btnLogging";
             this.btnLogging.Size = new System.Drawing.Size(95, 23);
             this.btnLogging.TabIndex = 1;
@@ -73,7 +79,7 @@
             // txtNextLoggingTime
             // 
             this.txtNextLoggingTime.Enabled = false;
-            this.txtNextLoggingTime.Location = new System.Drawing.Point(109, 123);
+            this.txtNextLoggingTime.Location = new System.Drawing.Point(109, 103);
             this.txtNextLoggingTime.Name = "txtNextLoggingTime";
             this.txtNextLoggingTime.ReadOnly = true;
             this.txtNextLoggingTime.Size = new System.Drawing.Size(100, 20);
@@ -101,7 +107,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(106, 107);
+            this.label2.Location = new System.Drawing.Point(106, 87);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 13);
             this.label2.TabIndex = 6;
@@ -120,11 +126,57 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick_1);
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.helpToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(452, 24);
+            this.menuStrip1.TabIndex = 8;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // helpToolStripMenuItem
+            // 
+            this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
+            this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
+            this.helpToolStripMenuItem.Text = "Help";
+            this.helpToolStripMenuItem.Click += new System.EventHandler(this.helpToolStripMenuItem_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(13, 131);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Number of writes";
+            // 
+            // lblNumberOfWrites
+            // 
+            this.lblNumberOfWrites.AutoSize = true;
+            this.lblNumberOfWrites.Location = new System.Drawing.Point(106, 131);
+            this.lblNumberOfWrites.Name = "lblNumberOfWrites";
+            this.lblNumberOfWrites.Size = new System.Drawing.Size(13, 13);
+            this.lblNumberOfWrites.TabIndex = 10;
+            this.lblNumberOfWrites.Text = "0";
+            // 
+            // lblFileName
+            // 
+            this.lblFileName.AutoSize = true;
+            this.lblFileName.Location = new System.Drawing.Point(13, 150);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(0, 13);
+            this.lblFileName.TabIndex = 11;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(452, 153);
+            this.ClientSize = new System.Drawing.Size(452, 172);
+            this.Controls.Add(this.lblFileName);
+            this.Controls.Add(this.lblNumberOfWrites);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -133,9 +185,13 @@
             this.Controls.Add(this.txtNextSamplingTime);
             this.Controls.Add(this.btnLogging);
             this.Controls.Add(this.btnSampling);
+            this.Controls.Add(this.menuStrip1);
+            this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -152,6 +208,11 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblNumberOfWrites;
+        private System.Windows.Forms.Label lblFileName;
     }
 }
 

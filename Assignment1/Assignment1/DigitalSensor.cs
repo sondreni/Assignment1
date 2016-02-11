@@ -10,6 +10,7 @@ namespace Assignment1
     {
         private int _Value; //Using 1 and 0 as true false instead of boolean
         private string _TagID;
+        Random rnd = new Random();
         public DigitalSensor(string TagID, int Value)
         {
             _TagID = TagID;
@@ -41,6 +42,10 @@ namespace Assignment1
             {
                 _Value = value;
             }
+        }
+        public void NewValue()
+        {
+            _Value = rnd.Next(0, 2);
         }
     }
 }

@@ -8,9 +8,16 @@ namespace Assignment1
 {
     class AnalogSensor
     {
+        static Random rnd = new Random();
         private double _Value;
         private string _TagID;
         private string _EngUnit;
+        //Setting the resolution and the range of the sensor
+        private int _Resolution = Convert.ToInt32(Math.Pow(2, 20));
+        private int _Lower = -1;
+        private int _Upper = 1;
+
+
         public AnalogSensor(string TagID, double Value, string EngUnit )
         {
             _TagID = TagID;
@@ -65,6 +72,9 @@ namespace Assignment1
                 _EngUnit = value;
             }
         }
-
+        public void NewValue()
+        {
+            _Value = ((Convert.ToDouble(rnd.Next(0, _Resolution)) / _Resolution) * (_Upper-_Lower) +_Lower);
+        }
     }
 }

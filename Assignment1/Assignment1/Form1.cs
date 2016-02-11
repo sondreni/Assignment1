@@ -20,28 +20,21 @@ namespace Assignment1
         double TimeToLogg = 0;
         AnalogSensor[] ASensor;
         DigitalSensor[] DSensor;
-        int Resolution;
+        int Resolution = Convert.ToInt32(Math.Pow(2, 20));
         bool Header=true;
-      
-        
-
-
+        int numberOfWrites = 0;
+              
         public Form1()           
         {
             InitializeComponent();
             SetNewValues();
         }
         
-
         private void SetNewValues()
-        {
-            
-            Resolution = Convert.ToInt32(Math.Pow(2, 20));
+        {            
             ASensor = new AnalogSensor[3];
             DSensor = new DigitalSensor[1];
-
-            
-
+                      
             for (int i = 0; i < ASensor.Length; i++)
             {
                 ASensor[i] = new AnalogSensor(("Analog Sensor " + Convert.ToString(i+1)),"V");
@@ -58,37 +51,26 @@ namespace Assignment1
 
         }
         
-        public void UpdateSensors()
-        {
-
-            for (int i = 0;i < ASensor.Length; i ++)
-            {
-                ASensor[i].Value = ((Convert.ToDouble(rnd.Next(0, Resolution)) / Resolution) * 2 - 1);
-                
-            }
-            for (int i = 0; i < DSensor.Length; i++)
-            {
-                DSensor[i].Value = rnd.Next(0, 2);
-            }
-        }
+        
         public void ReadSensors()
         {
             string tekst = "";
             for (int i = 0; i < ASensor.Length; i++)
             {
-                tekst = tekst + ASensor[i].TagID +": "+ Convert.ToString(ASensor[i].Value)+" "+ ASensor[i].EngUnit + "\n";
+                ASensor[i].NewValue();
+               tekst = tekst + ASensor[i].TagID +": "+ Convert.ToString(ASensor[i].Value)+" "+ ASensor[i].EngUnit + "\n";
                 
             }
             for (int i = 0; i < DSensor.Length; i++)
             {
+                DSensor[i].NewValue();
                 tekst = tekst + DSensor[i].TagID + ": " + Convert.ToString(DSensor[i].Value) + "\n";
             }
             txtSensorData.Text = tekst;
         }
 
         private void btnSampling_Click(object sender, EventArgs e)
-        {
-            
+        {         
             
             if (runSampling)
             {
@@ -103,10 +85,7 @@ namespace Assignment1
                 timer1.Start();
                 runSampling = true;
                 btnLogging.Enabled = true;
-            }
-                
-
-
+            }                
         }
 
         private void btnLogging_Click(object sender, EventArgs e)
@@ -130,13 +109,13 @@ namespace Assignment1
                 if (TimeToSample == 0)
                 {
                     TimeToSample = 2.0;
-                    UpdateSensors();
                     ReadSensors();
 
                 }
                 else
                 {
                     TimeToSample -= 0.1;
+                    //Some problems with the 0.999999999 so it skips the 0 mark if the round is omited
                     TimeToSample = Math.Round(TimeToSample, 1);
                 }
                 if (runLogging)
@@ -144,29 +123,7 @@ namespace Assignment1
                     txtNextLoggingTime.Text = Convert.ToString(TimeToLogg);
                     if (TimeToLogg == 0)
                     {
-                        string tekst = "";
-                        if (Header)
-                        {
-                            tekst = "Tidspunkt;";
-                            for (int i = 0; i < ASensor.Length; i++)
-                                tekst = tekst + ASensor[i].TagID + ";";
-                            for (int i = 0; i < DSensor.Length; i++)
-                                tekst = tekst + DSensor[i].TagID + ";";
-                            tekst = tekst + "\n";
-                            Header = false;
-                        }
-                        DateTime DateAndTime = DateTime.Now;
-                        tekst = tekst + DateAndTime.ToString("yyyy.MM.dd HH:mm:ss")+";";
-                        for (int i = 0; i < ASensor.Length; i++)
-                            tekst = tekst +Convert.ToString(ASensor[i].Value) + ";";
-                        for (int i = 0; i < DSensor.Length; i++)
-                            tekst = tekst + Convert.ToString(DSensor[i].Value) + ";";
-
-                        tekst = tekst + "\n";
-
-
-                        File.AppendAllText("test.csv", tekst);
-                        TimeToLogg = 13;
+                        LoggSamples();
 
                     }
                     else
@@ -189,6 +146,41 @@ namespace Assignment1
             {
                 runLogging = true;
             }
+        }
+        private void LoggSamples()
+        {
+            string tekst = "";
+            if (Header)
+            {
+                tekst = "Tidspunkt;";
+                for (int i = 0; i < ASensor.Length; i++)
+                    tekst += ASensor[i].TagID + ";";
+                for (int i = 0; i < DSensor.Length; i++)
+                    tekst += DSensor[i].TagID + ";";
+                tekst += "\n";
+                Header = false;
+                lblFileName.Text = "File name: test.csv";
+            }
+            DateTime DateAndTime = DateTime.Now;
+            tekst += DateAndTime.ToString("yyyy.MM.dd HH:mm:ss") + ";";
+            for (int i = 0; i < ASensor.Length; i++)
+                tekst += Convert.ToString(ASensor[i].Value) + ";";
+            for (int i = 0; i < DSensor.Length; i++)
+                tekst += Convert.ToString(DSensor[i].Value) + ";";
+
+            tekst += "\n";
+
+
+            File.AppendAllText("test.csv", tekst);
+
+            TimeToLogg = 13;
+            numberOfWrites++;
+            lblNumberOfWrites.Text = numberOfWrites.ToString();
+        }
+
+        private void helpToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("Use the Toggle Sampling button to start sampling."+ "\n" +"Then use the Toggle Logging to save the data to test.csv" , "Program Instructions", System.Windows.Forms.MessageBoxButtons.OK);
         }
     }
 }
